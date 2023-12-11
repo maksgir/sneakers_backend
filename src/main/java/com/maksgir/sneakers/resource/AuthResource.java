@@ -1,4 +1,4 @@
-package com.maksgir.sneakers.controller;
+package com.maksgir.sneakers.resource;
 
 
 import com.maksgir.sneakers.exception.UserAlreadySignedUpException;
@@ -19,7 +19,7 @@ import java.util.Date;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
-public class AuthController {
+public class AuthResource {
 
 
     @Autowired

@@ -1,4 +1,4 @@
-package com.maksgir.sneakers.controller;
+package com.maksgir.sneakers.resource;
 
 import com.maksgir.sneakers.service.dto.ErrorMessage;
 import com.maksgir.sneakers.exception.TokenRefreshException;
