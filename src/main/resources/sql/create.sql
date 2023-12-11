@@ -1,7 +1,7 @@
 -- user table ----------------------------------
 
 CREATE TABLE users (
-                       user_id VARCHAR PRIMARY KEY,
+                       id VARCHAR PRIMARY KEY,
                        first_name VARCHAR,
                        last_name VARCHAR,
                        username VARCHAR UNIQUE NOT NULL,
@@ -13,20 +13,20 @@ CREATE TABLE users (
 -- seller table ----------------------------------
 
 CREATE TABLE sellers (
-                         seller_id VARCHAR PRIMARY KEY,
+                         id VARCHAR PRIMARY KEY,
                          user_id VARCHAR UNIQUE NOT NULL,
                          rating INTEGER NOT NULL
 );
 
 ALTER TABLE sellers
     ADD CONSTRAINT fk_sellers_users
-        FOREIGN KEY (user_id) REFERENCES users(user_id);
+        FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 -- sneakers table ----------------------------------
 
 CREATE TABLE sneakers (
-                          sneaker_id VARCHAR PRIMARY KEY,
+                          id VARCHAR PRIMARY KEY,
                           model VARCHAR NOT NULL,
                           brand VARCHAR NOT NULL,
                           size DECIMAL NOT NULL,
@@ -50,15 +50,15 @@ CREATE TABLE ticket (
 
 ALTER TABLE ticket
     ADD CONSTRAINT fk_ticket_buyers
-        FOREIGN KEY (buyer_id) REFERENCES users(user_id);
+        FOREIGN KEY (buyer_id) REFERENCES users(id);
 
 ALTER TABLE ticket
     ADD CONSTRAINT fk_ticket_sellers
-        FOREIGN KEY (seller_id) REFERENCES sellers(user_id);
+        FOREIGN KEY (seller_id) REFERENCES sellers(id);
 
 ALTER TABLE ticket
     ADD CONSTRAINT fk_ticket_sneakers
-        FOREIGN KEY (sneaker_id) REFERENCES sneakers(sneaker_id);
+        FOREIGN KEY (sneaker_id) REFERENCES sneakers(id);
 
 -- reviews table ----------------------------------
 
@@ -73,11 +73,11 @@ CREATE TABLE reviews (
 
 ALTER TABLE reviews
     ADD CONSTRAINT fk_reviews_reviewers
-        FOREIGN KEY (reviewer_id) REFERENCES users(user_id);
+        FOREIGN KEY (reviewer_id) REFERENCES users(id);
 
 ALTER TABLE reviews
     ADD CONSTRAINT fk_reviews_reviewed_users
-        FOREIGN KEY (reviewed_user_id) REFERENCES users(user_id);
+        FOREIGN KEY (reviewed_user_id) REFERENCES users(id);
 
 
 -- sneaker_ratings table ----------------------------------
@@ -90,7 +90,7 @@ CREATE TABLE sneaker_ratings (
 
 ALTER TABLE sneaker_ratings
     ADD CONSTRAINT fk_sneaker_ratings_sneakers
-        FOREIGN KEY (sneaker_id) REFERENCES sneakers(sneaker_id);
+        FOREIGN KEY (sneaker_id) REFERENCES sneakers(id);
 
 
 -- sneaker_images table ----------------------------------
@@ -103,7 +103,7 @@ CREATE TABLE sneaker_images (
 
 ALTER TABLE sneaker_images
     ADD CONSTRAINT fk_sneaker_images_sneakers
-        FOREIGN KEY (sneaker_id) REFERENCES sneakers(sneaker_id);
+        FOREIGN KEY (sneaker_id) REFERENCES sneakers(id);
 
 
 -- sneaker_categories table ----------------------------------
@@ -116,7 +116,7 @@ CREATE TABLE sneaker_categories (
 
 ALTER TABLE sneaker_categories
     ADD CONSTRAINT fk_sneaker_categories_sneakers
-        FOREIGN KEY (sneaker_id) REFERENCES sneakers(sneaker_id);
+        FOREIGN KEY (sneaker_id) REFERENCES sneakers(id);
 
 
 -- wishlists table ---------------------------------------
@@ -129,11 +129,11 @@ CREATE TABLE wishlists (
 
 ALTER TABLE wishlists
     ADD CONSTRAINT fk_wishlists_users
-        FOREIGN KEY (user_id) REFERENCES users(user_id);
+        FOREIGN KEY (user_id) REFERENCES users(id);
 
 ALTER TABLE wishlists
     ADD CONSTRAINT fk_wishlists_sneakers
-        FOREIGN KEY (sneaker_id) REFERENCES sneakers(sneaker_id);
+        FOREIGN KEY (sneaker_id) REFERENCES sneakers(id);
 
 
 -- messages table ----------------------------------
@@ -148,9 +148,9 @@ CREATE TABLE messages (
 
 ALTER TABLE messages
     ADD CONSTRAINT fk_messages_senders
-        FOREIGN KEY (sender_id) REFERENCES users(user_id);
+        FOREIGN KEY (sender_id) REFERENCES users(id);
 
 ALTER TABLE messages
     ADD CONSTRAINT fk_messages_receivers
-        FOREIGN KEY (receiver_id) REFERENCES users(user_id);
+        FOREIGN KEY (receiver_id) REFERENCES users(id);
 
